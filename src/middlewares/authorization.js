@@ -2,13 +2,17 @@ const jwt = require('jsonwebtoken');
 const { StatusCodes } = require('http-status-codes');
 
 const validationToken = (req, res, next) => {
-  const token = req.headers.authorization;
-  if (!token) {
-    res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Token not found' });
+  const bearerHeader = req.headers['authorization'];
+  if (typeof bearerHeader != 'undefined') {
+    const bearer = bearerHeader.split(' ');
+    const bearerToken = bearer[1];
+    req.token = bearerToken;
+  } else {
+    res.status(StatusCodes.FORBIDDEN).json({ message: 'Token not found' });
   }
   let payload = null;
   try {
-    payload = jwt.verify(token, process.env.JWT_SECRET);
+    payload = jwt.verify(req.token, process.env.JWT_SECRET);
   } catch (error) {
     return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Expired or invalid token' });
   }

@@ -1,0 +1,493 @@
+{
+	"openapi": "3.0.1",
+	"info": {
+		"title": "Enterprises",
+		"description": "Documentation from enterprises api",
+		"version": "1.0.0"
+	},
+	"basePath": "/",
+
+	"components": {
+		"securitySchemes": {
+			"validationToken": {
+				"type": "http",
+				"scheme": "bearer",
+				"bearerFormat": "JWT"
+			}
+		}
+	},
+
+	"paths": {
+		"/user": {
+			"get": {
+				"tags": ["Users"],
+				"security": [{"validationToken": []}],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "q",
+						"type": "string"
+					}
+				],
+				"responses": {
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/user/admin": {
+			"post": {
+				"tags": ["Users"],
+				"security": [{"validationToken": []}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"fullName": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									},
+									"birthDate": {
+										"type": "string"
+									},
+									"UF": {
+										"type": "string"
+									},
+									"city": {
+										"type": "string"
+									},
+									"schooling": {
+										"type": "string"
+									},
+									"role": {
+										"type": "string"
+									}
+								}
+							}
+						},
+						"responses": {
+							"401": {
+								"description": "Unauthorized"
+							},
+							"403": {
+								"description": "Forbidden"
+							},
+							"409": {
+								"description": "Conflict"
+							},
+							"201": {
+								"description": "Created"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/user/:id": {
+			"put": {
+				"tags": ["Users"],
+				"security": [{"validationToken": []}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"fullName": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									},
+									"birthDate": {
+										"type": "string"
+									},
+									"UF": {
+										"type": "string"
+									},
+									"city": {
+										"type": "string"
+									},
+									"schooling": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/user/:id": {
+			"get": {
+				"tags": ["Users"],
+				"security": [{"validationToken": []}],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/user": {
+			"post": {
+				"tags": ["Users"],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"fullName": {
+										"type": "string"
+									},
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									},
+									"birthDate": {
+										"type": "string"
+									},
+									"UF": {
+										"type": "string"
+									},
+									"city": {
+										"type": "string"
+									},
+									"schooling": {
+										"type": "string"
+									},
+									"role": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"409": {
+						"description": "Conflict"
+					},
+					"201": {
+						"description": "Created"
+					}
+				}
+			}
+		},
+		"/user/:id": {
+			"delete": {
+				"tags": ["Users"],
+				"security": [{"validationToken": []}],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"204": {
+						"description": "No content"
+					}
+				}
+			}
+		},
+		"/login": {
+			"post": {
+				"tags": ["Users"],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"email": {
+										"type": "string"
+									},
+									"password": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/company": {
+			"get": {
+				"tags": ["Companies"],
+				"security": [{"validationToken": []}],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "q",
+						"type": "string"
+					}
+				],
+				"responses": {
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/company/:id": {
+			"put": {
+				"tags": ["Companies"],
+				"security": [{"validationToken": []}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"area": {
+										"type": "string"
+									},
+									"foundationYear": {
+										"type": "integer"
+									},
+									"description": {
+										"type": "string"
+									},
+									"director": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"503": {
+						"description": "Service unavailable"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/company/:id": {
+			"get": {
+				"tags": ["Companies"],
+				"security": [{"validationToken": []}],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"200": {
+						"description": "OK"
+					}
+				}
+			}
+		},
+		"/company": {
+			"post": {
+				"tags": ["Companies"],
+				"security": [{"validationToken": []}],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"type": "object",
+								"properties": {
+									"name": {
+										"type": "string"
+									},
+									"area": {
+										"type": "string"
+									},
+									"foundationYear": {
+										"type": "integer"
+									},
+									"description": {
+										"type": "string"
+									},
+									"director": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				},
+				"responses": {
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"409": {
+						"description": "Conflict"
+					},
+					"201": {
+						"description": "Created"
+					}
+				}
+			}
+		},
+		"/company/:id": {
+			"delete": {
+				"tags": ["Companies"],
+				"security": [{"validationToken": []}],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"type": "integer"
+					}
+				],
+				"responses": {
+					"400": {
+						"description": "Bad request"
+					},
+					"401": {
+						"description": "Unauthorized"
+					},
+					"403": {
+						"description": "Forbidden"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					},
+					"204": {
+						"description": "No content"
+					}
+				}
+			}
+		}
+	}
+}
